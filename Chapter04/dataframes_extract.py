@@ -1,11 +1,14 @@
-import psycopg2 as db
 import pandas as pd
+from sqlalchemy import create_engine
 
 # Define the connection string to connect to the PostgreSQL database
-conn_string = "dbname = 'dataengineering' host = 'localhost' user = 'postgres' password = 'ollie'"
+conn_string = "postgresql+psycopg2://postgres:*****@localhost/dataengineering"
+
+# Create a SQLAlchemy engine
+engine = create_engine(conn_string)
 
 # Establish a connection to the database and fetch data into a DataFrame
-with db.connect(conn_string) as conn:
+with engine.connect() as conn:
     # Use pandas to execute a SQL query and fetch the data into a DataFrame
     df = pd.read_sql_query("SELECT * FROM users", conn)
 
