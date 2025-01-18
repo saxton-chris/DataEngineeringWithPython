@@ -13,11 +13,20 @@ def search_documents(es_client, index_name, query):
         print(f"Error executing search query: {e}")
         return []
 
+def search_with_lucene(es_client, index_name, lucene_query, size=10):
+    """Perform a search query using Lucene syntax."""
+    try:
+        response = es_client.search(index=index_name, q=lucene_query, size=size)
+        return response['hits']['hits']
+    except Exception as e:
+        print(f"Error executing Lucene query: {e}")
+        return []
+
 if __name__ == "__main__":
     # Connect to Elasticsearch
     es = connect_to_elasticsearch("http://localhost:9200")
 
-    # Define the search query
+    # Define the search query to retrieve all documents
     doc = {
         "query": {"match_all": {}},
         "size": 10
@@ -27,28 +36,43 @@ if __name__ == "__main__":
     results = search_documents(es, "users", doc)
 
     # Print the search results
+    print("All documents:")
     for result in results:
         print(result)
 
-# Get Ronald Goodman
-doc={"query":{"match":{"name":"Ronald Goodman"}}, "size": 10}
-res=es.search(index="users",body=doc)
-print("FOUND RONALD")
-print(res['hits']['hits'][0]['_source'])
+    # Search for a specific user by name
+    print("\nSearch for Ronald Goodman:")
+    doc = {"query": {"match": {"name": "Ronald Goodman"}}, "size": 10}
+    results = search_documents(es, "users", doc)
+    if results:
+        print(results[0]['_source'])
 
-# Get Ronald using Lucene syntax
-res=es.search(index="users",q="name:Ronald Goodman",size=10)
-print("FOUND ROLAND AGAIN")
-print(res['hits']['hits'][0]['_source'])
+    # Search for Ronald Goodman using Lucene syntax
+    print("\nSearch for Ronald Goodman using Lucene syntax:")
+    results = search_with_lucene(es, "users", "name:Ronald Goodman", size=10)
+    if results:
+        print(results[0]['_source'])
 
-# Get City Jamesberg - Returns Jamesberg and Lake Jamesberg
-doc={"query":{"match":{"city":"Jamesberg"}}, "size": 10}
-res=es.search(index="users",body=doc)
-print("FOUND JAMESBERG CITIES")
-print(res['hits']['hits'])
+    # Search for a city, including partial matches
+    print("\nSearch for cities matching Jamesberg:")
+    doc = {"query": {"match": {"city": "Jamesberg"}}, "size": 10}
+    results = search_documents(es, "users", doc)
+    print("Jamesberg results:")
+    for result in results:
+        print(result)
 
-# Get Jamesberg and filter on zip so Lake Jamesberg is removed
-doc={"query":{"bool":{"must":{"match":{"city":"Jamesberg"}},"filter":{"term":{"zip":"63792"}}}}, "size": 10}
-res=es.search(index="users",body=doc)
-print("FOUND  ONLY JAMESBERG")
-print(res['hits']['hits'])
+    # Search for a city and filter by zip code
+    print("\nSearch for Jamesberg filtered by zip code:")
+    doc = {
+        "query": {
+            "bool": {
+                "must": {"match": {"city": "Jamesberg"}},
+                "filter": {"term": {"zip": "63792"}}
+            }
+        },
+        "size": 10
+    }
+    results = search_documents(es, "users", doc)
+    print("Filtered Jamesberg results:")
+    for result in results:
+        print(result)
