@@ -1,30 +1,54 @@
 from elasticsearch import Elasticsearch
 
-# Establish a connection to the Elasticsearch cluster
-es = Elasticsearch(hosts="http://localhost:9200")
-print("CONNECTION ESTABLISHED")
+def connect_to_elasticsearch(host):
+    """Establish a connection to the Elasticsearch cluster."""
+    return Elasticsearch(hosts=host)
 
-# Perform an initial search query to create a scroll context
-res = es.search(
-    index = 'users',                                    # The target index to search
-    scroll = '20m',                                     # Keep the search context alive for 20 minutes
-    body = {"query": {"match_all": {}}, "size": 500}    # Match all documents, retrieving 500 at a time
-)
-print("\nRESULTS GATHERED")
+def initialize_scroll(es_client, index_name, query, scroll_time='20m', batch_size=500):
+    """Initialize a scroll context to retrieve documents in batches."""
+    return es_client.search(index=index_name, scroll=scroll_time, body={**query, "size": batch_size})
 
-# Extract the scroll ID and total number of documents from the initial response
-sid = res['_scroll_id']                 # Scroll ID to fetch subsequent batches
-size = res['hits']['total']['value']    # Total number of documents matching the query
-print(f"\nID AND SIZE GATHERED SIZE: {size}")
+def scroll_through_documents(es_client, scroll_id, scroll_time='20m'):
+    """Retrieve documents in batches using the scroll API."""
+    try:
+        while True:
+            response = es_client.scroll(scroll_id=scroll_id, scroll=scroll_time)
+            hits = response['hits']['hits']
 
-# Use a loop to scroll through all matching documents
-while (size > 0):
-    print(size)                                         # Print the size of the current batch
-    res = es.scroll(scroll_id = sid, scroll = '20m')    # Fetch the next batch of results using the scroll ID
-    sid = res['_scroll_id']                             # Update the scroll ID for the next iteration
-    size = len(res['hits']['hits'])                     # Number of documents in the current batch
-    
-    # Print the source (content) of each document in the current batch
-    for doc in res['hits']['hits']:
-        print(doc['_source'])
-print("\nWHILE LOOP DONE")
+            if not hits:
+                break
+
+            for doc in hits:
+                print(doc['_source'])
+
+            scroll_id = response['_scroll_id']
+
+        es_client.clear_scroll(scroll_id=scroll_id)
+        print("Scroll operation completed.")
+
+    except Exception as e:
+        print(f"Error during scroll operation: {e}")
+
+if __name__ == "__main__":
+    # Connect to Elasticsearch
+    es = connect_to_elasticsearch("http://localhost:9200")
+    print("CONNECTION ESTABLISHED")
+
+    # Define the search query
+    query = {"query": {"match_all": {}}}
+
+    # Initialize the scroll operation
+    try:
+        res = initialize_scroll(es, "users", query, scroll_time='20m', batch_size=500)
+        print("\nRESULTS GATHERED")
+
+        # Extract the scroll ID and start scrolling
+        sid = res['_scroll_id']
+        total_size = res['hits']['total']['value']
+        print(f"\nTOTAL DOCUMENTS: {total_size}")
+
+        # Scroll through the documents
+        scroll_through_documents(es, sid, scroll_time='20m')
+
+    except Exception as e:
+        print(f"Error initializing scroll: {e}")
