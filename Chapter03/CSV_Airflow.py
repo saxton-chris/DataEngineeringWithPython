@@ -6,33 +6,44 @@ from airflow.operators.bash import BashOperator  # BashOperator for running bash
 from airflow.operators.python import PythonOperator  # PythonOperator for running Python functions
 
 import pandas as pd  # Importing pandas for data manipulation
+import os  # Importing os for environment and file path management
 
 # Define the Python function to convert CSV to JSON
 def CSVtoJson():
-    # Read the CSV file into a pandas DataFrame
-    df = pd.read_csv('~/workspace/github.com/saxton-chris/DataEngineeringWithPython/output/Chapter03/data.csv')
+    # File paths
+    input_file = os.path.expanduser("~/workspace/github.com/saxton-chris/DataEngineeringWithPython/output/Chapter03/data.csv")
+    output_file = os.path.expanduser("~/workspace/github.com/saxton-chris/DataEngineeringWithPython/output/Chapter03/fromAirflow.JSON")
     
-    # Iterate through the DataFrame rows and print the 'name' column
-    for i, r in df.iterrows():
-        print(r['name'])
+    try:
+        # Read the CSV file into a pandas DataFrame
+        df = pd.read_csv(input_file)
+        
+        # Log each name in the DataFrame (or use Airflow's logger)
+        for name in df['name']:
+            print(name)
+        
+        # Convert the DataFrame to JSON format and save it to a file
+        df.to_json(output_file, orient='records', indent=4)
+        print(f"JSON file successfully created at {output_file}")
     
-    # Convert the DataFrame to JSON format and save it to a file
-    df.to_json('~/workspace/github.com/saxton-chris/DataEngineeringWithPython/output/Chapter03/fromAirflow.JSON', orient='records')
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        raise
 
 # Define the default arguments for the DAG
 default_args = {
     'owner': 'chrissaxton',  # Owner of the DAG
     'start_date': dt.datetime(2025, 1, 11),  # Start date of the DAG
     'retries': 1,  # Number of retries if a task fails
-    'retry_delay': dt.timedelta(minutes=5),  # Delay between retries
+    'retry_delay': timedelta(minutes=5),  # Delay between retries
 }
 
 # Define the DAG
-with DAG('MyCSVDAG',  # Name of the DAG
-         default_args=default_args,  # Apply default arguments
-         schedule=timedelta(minutes=5),  # Schedule the DAG to run every 5 minutes
-         # schedule='0 * * * *',  # Alternatively, specify a cron expression for scheduling
-         ) as dag:
+with DAG(
+    'MyCSVDAG',  # Name of the DAG
+    default_args=default_args,  # Apply default arguments
+    schedule=timedelta(minutes=5),  # Schedule the DAG to run every 5 minutes
+) as dag:
     
     # Task 1: BashOperator to print a starting message
     print_starting = BashOperator(
