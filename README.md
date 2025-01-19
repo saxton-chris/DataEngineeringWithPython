@@ -3,7 +3,7 @@
 Creating a repository to track my work through the Data Engineering With Python book by Packt Publishing
 
 ## Table of Contents
-* [Chapters](#chapters)
+* [Data Engineering With Python](#chapters)
 * [Building Data Pipelines](#section1)
     * [What is Data Engineering?](#chapter1)
     * [Data Engineering Infrastructure](#chapter2)
@@ -23,7 +23,9 @@ Creating a repository to track my work through the Data Engineering With Python 
     * [Data Processing with Apache Spark](#chapter14)
     * [Real-Time Edge Data](#chapter15)
 
-## Chapter by Chapter Work <a name="chapters"></a>
+## Chapters of Data Engineering With Python <a name="chapters"></a>
+
+This will be a growing section. I will add notes, commentary, tips, and tricks that I learned while working through the book Data Engineering With Python. Some of this will be notes that I took on things I learned and changed due to this book being a little out of data. I will note where I used the versions listed in the book, where functions may have been depricated or removed, and how I worked around various issues I encountered.
 
 ### Section 1: *Building Data Pipelines - Extract, Transform, Load* <a name="section1"></a>
 
