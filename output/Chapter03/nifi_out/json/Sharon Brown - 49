@@ -1,0 +1,22 @@
+{
+  "file.group" : "chris-saxton",
+  "city" : "East Daniel",
+  "file.lastModifiedTime" : "2025-01-24T12:20:00-0600",
+  "fragment.identifier" : "61f13dc0-8929-499a-9c43-c287478e7dff",
+  "fragment.index" : "812",
+  "mime.type" : "application/json",
+  "file.permissions" : "rw-rw-r--",
+  "uuid" : "b8b7e62f-ed62-4de3-8a8d-55e2221aebcf",
+  "absolute.path" : "/home/chris-saxton/workspace/github.com/saxton-chris/DataEngineeringWithPython/output/Chapter03/",
+  "path" : "/",
+  "filename" : "Sharon Brown",
+  "record.count" : "1",
+  "name" : "Sharon Brown",
+  "QueryRecord.Route" : "over.40",
+  "file.creationTime" : "2025-01-24T12:20:00-0600",
+  "file.lastAccessTime" : "2025-01-24T12:20:11-0600",
+  "segment.original.filename" : "data.json",
+  "file.owner" : "chris-saxton",
+  "fragment.count" : "1000",
+  "age" : "49"
+}

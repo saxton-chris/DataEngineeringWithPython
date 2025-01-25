@@ -1,0 +1,22 @@
+{
+  "file.group" : "chris-saxton",
+  "city" : "Pattersonport",
+  "file.lastModifiedTime" : "2025-01-24T12:20:00-0600",
+  "fragment.identifier" : "61f13dc0-8929-499a-9c43-c287478e7dff",
+  "fragment.index" : "285",
+  "mime.type" : "application/json",
+  "file.permissions" : "rw-rw-r--",
+  "uuid" : "e2be9e10-cdd3-4707-93b8-30bc21cb27fc",
+  "absolute.path" : "/home/chris-saxton/workspace/github.com/saxton-chris/DataEngineeringWithPython/output/Chapter03/",
+  "path" : "/",
+  "filename" : "Brandy Daugherty",
+  "record.count" : "1",
+  "name" : "Brandy Daugherty",
+  "QueryRecord.Route" : "over.40",
+  "file.creationTime" : "2025-01-24T12:20:00-0600",
+  "file.lastAccessTime" : "2025-01-24T12:20:11-0600",
+  "segment.original.filename" : "data.json",
+  "file.owner" : "chris-saxton",
+  "fragment.count" : "1000",
+  "age" : "72"
+}

@@ -1,0 +1,22 @@
+{
+  "file.group" : "chris-saxton",
+  "city" : "Richardview",
+  "file.lastModifiedTime" : "2025-01-24T12:20:00-0600",
+  "fragment.identifier" : "61f13dc0-8929-499a-9c43-c287478e7dff",
+  "fragment.index" : "570",
+  "mime.type" : "application/json",
+  "file.permissions" : "rw-rw-r--",
+  "uuid" : "ac449734-78a6-4189-9208-70a30127e3d5",
+  "absolute.path" : "/home/chris-saxton/workspace/github.com/saxton-chris/DataEngineeringWithPython/output/Chapter03/",
+  "path" : "/",
+  "filename" : "Carl Hawkins MD",
+  "record.count" : "1",
+  "name" : "Carl Hawkins MD",
+  "QueryRecord.Route" : "over.40",
+  "file.creationTime" : "2025-01-24T12:20:00-0600",
+  "file.lastAccessTime" : "2025-01-24T12:20:11-0600",
+  "segment.original.filename" : "data.json",
+  "file.owner" : "chris-saxton",
+  "fragment.count" : "1000",
+  "age" : "42"
+}

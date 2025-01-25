@@ -1,0 +1,22 @@
+{
+  "file.group" : "chris-saxton",
+  "city" : "Ericfort",
+  "file.lastModifiedTime" : "2025-01-24T12:20:00-0600",
+  "fragment.identifier" : "61f13dc0-8929-499a-9c43-c287478e7dff",
+  "fragment.index" : "361",
+  "mime.type" : "application/json",
+  "file.permissions" : "rw-rw-r--",
+  "uuid" : "1928ab23-f4e4-4b9d-b70a-3d22d3c49d6f",
+  "absolute.path" : "/home/chris-saxton/workspace/github.com/saxton-chris/DataEngineeringWithPython/output/Chapter03/",
+  "path" : "/",
+  "filename" : "William Valentine",
+  "record.count" : "1",
+  "name" : "William Valentine",
+  "QueryRecord.Route" : "over.40",
+  "file.creationTime" : "2025-01-24T12:20:00-0600",
+  "file.lastAccessTime" : "2025-01-24T12:20:11-0600",
+  "segment.original.filename" : "data.json",
+  "file.owner" : "chris-saxton",
+  "fragment.count" : "1000",
+  "age" : "68"
+}

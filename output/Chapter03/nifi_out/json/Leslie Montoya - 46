@@ -1,0 +1,22 @@
+{
+  "file.group" : "chris-saxton",
+  "city" : "Port Michaelton",
+  "file.lastModifiedTime" : "2025-01-24T12:20:00-0600",
+  "fragment.identifier" : "61f13dc0-8929-499a-9c43-c287478e7dff",
+  "fragment.index" : "210",
+  "mime.type" : "application/json",
+  "file.permissions" : "rw-rw-r--",
+  "uuid" : "80cc04c3-86f4-4ef7-9191-a7c33c228f5f",
+  "absolute.path" : "/home/chris-saxton/workspace/github.com/saxton-chris/DataEngineeringWithPython/output/Chapter03/",
+  "path" : "/",
+  "filename" : "Leslie Montoya",
+  "record.count" : "1",
+  "name" : "Leslie Montoya",
+  "QueryRecord.Route" : "over.40",
+  "file.creationTime" : "2025-01-24T12:20:00-0600",
+  "file.lastAccessTime" : "2025-01-24T12:20:11-0600",
+  "segment.original.filename" : "data.json",
+  "file.owner" : "chris-saxton",
+  "fragment.count" : "1000",
+  "age" : "46"
+}
