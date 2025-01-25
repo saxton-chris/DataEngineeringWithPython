@@ -10,7 +10,7 @@ data = [(i, fake.name(), fake.street_address(), fake.city(), fake.zipcode()) for
 data_for_db = tuple(data)
 
 # Connection string to connect to the PostgreSQL database
-conn_string = "dbname = 'dataengineering' host = 'localhost' user = 'postgres' password = '*****'"
+conn_string = "dbname = 'dataengineering' host = 'localhost' user = 'postgres' password = 'postgres'"
 
 # Establish a connection to the database
 with db.connect(conn_string) as conn:

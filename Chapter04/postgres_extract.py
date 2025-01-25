@@ -1,7 +1,7 @@
 import psycopg2 as db
 
 # Define the connection string to connect to the PostgreSQL database
-conn_string = "dbname = 'dataengineering' host = 'localhost' user = 'postgres' password = 'ollie'"
+conn_string = "dbname = 'dataengineering' host = 'localhost' user = 'postgres' password = 'postgres'"
 
 # Establish a connection to the database
 with db.connect(conn_string) as conn:
@@ -19,5 +19,5 @@ with db.connect(conn_string) as conn:
         print(len(records))
 
         # Write the data to a CSV file
-        with open("../output/data_ch04.csv", "w") as f:
+        with open("../output/Chapter04/data_ch04.csv", "w") as f:
             cur.copy_to(f, 'users', sep=',')

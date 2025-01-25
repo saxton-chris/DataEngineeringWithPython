@@ -2,7 +2,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 # Define the connection string to connect to the PostgreSQL database
-conn_string = "postgresql+psycopg2://postgres:*****@localhost/dataengineering"
+conn_string = "postgresql+psycopg2://postgres:postgres@localhost/dataengineering"
 
 # Create a SQLAlchemy engine
 engine = create_engine(conn_string)
@@ -13,4 +13,4 @@ with engine.connect() as conn:
     df = pd.read_sql_query("SELECT * FROM users", conn)
 
     # Save the DataFrame as a JSON file in records orientation
-    df.to_json("../output/data_ch04.json", orient='records', indent=4)
+    df.to_json("../output/Chapter04/data_ch04.json", orient='records', indent=4)
